@@ -8,7 +8,11 @@ import org.modelmapper.ModelMapper;
 public class ModelMapperConfig {
     
     @Bean
-    public ModelMapper ModelMapper(){
-        return new ModelMapper();
+    public ModelMapper modelMapper(){
+        ModelMapper modelMapper = new ModelMapper();
+        // Key configuration: Ignore null fields when mapping.
+        // This is crucial for partial updates (PATCH/PUT).
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+        return modelMapper;
     }
 }
